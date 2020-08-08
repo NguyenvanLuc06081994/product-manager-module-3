@@ -23,5 +23,14 @@ class ProductRepository
         $product->save();
     }
 
+    public function findById($id)
+    {
+        return $this->product->findOrFail($id);
+    }
+
+    public function delete($product)
+    {
+        $product->delete();
+    }
 
 }
