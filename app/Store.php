@@ -10,4 +10,8 @@ class Store extends Model
     {
         return $this->belongsToMany('App\Product','store_product','store_id','product_id');
     }
+    public function store_products()
+    {
+        return $this->hasMany('App\Store_product','store_id','id');
+    }
 }

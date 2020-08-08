@@ -33,3 +33,20 @@ Route::prefix('products')->group(function (){
     Route::post('/{id}/edit','ProductController@edit')->name('products.edit');
     Route::get('/{id}/delete','ProductController@delete')->name('products.delete');
 });
+
+Route::prefix('customers')->group(function (){
+    Route::get('/','CustomerController@getAll')->name('customers.list');
+    Route::get('/create','CustomerController@showFormAdd')->name('customers.showFormAdd');
+    Route::post('/create','CustomerController@addCustomer')->name('customers.addCustomer');
+    Route::get('/{id}/edit','CustomerController@showFormEdit')->name('customers.showFormEdit');
+    Route::post('/{id}/edit','CustomerController@edit')->name('customers.edit');
+});
+
+Route::prefix('bills')->group(function (){
+    Route::get('/','BillController@getAll')->name('bills.list');
+    Route::get('/{id}/detail','BillController@showDetail')->name('bills.detail');
+//    Route::get('/create','CustomerController@showFormAdd')->name('customers.showFormAdd');
+//    Route::post('/create','CustomerController@addCustomer')->name('customers.addCustomer');
+//    Route::get('/{id}/edit','CustomerController@showFormEdit')->name('customers.showFormEdit');
+//    Route::post('/{id}/edit','CustomerController@edit')->name('customers.edit');
+});

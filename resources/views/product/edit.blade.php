@@ -32,8 +32,9 @@
             <lablel>Store</lablel>
             <br>
             @foreach($stores as $store)
+{{--                {{dd($product->store_products)}}--}}
                 <div class="form-group">
-                    <input type="checkbox" name="store[{{$store->id}}]" @if($product->id) checked @endif value="{{$store->id}}"> : {{$store->name}}
+                    <input type="checkbox" name="store[{{$store->id}}]" value="{{$store->id}}"> : {{$store->name}}
                 </div>
             @endforeach
         </div>
