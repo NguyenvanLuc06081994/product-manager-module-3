@@ -14,6 +14,7 @@
 
         <div class="form-group">
             <input type="submit" value="ADD" class="btn btn-primary">
+            <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Cancel</button>
         </div>
     </form>
 @endsection

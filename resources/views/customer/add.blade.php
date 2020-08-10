@@ -1,6 +1,12 @@
 @extends('menu.master')
 @section('title','Form Add Customer')
 @section('content')
+    <div class="error-message">
+        @if ($errors->any())
+            @foreach($errors->all() as $nameError)
+                <p style="color:red">{{ $nameError }}</p>
+            @endforeach
+        @endif
     <form method="post" action="{{route('customers.addCustomer')}}">
         @csrf
         <div class="form-group">
@@ -21,6 +27,7 @@
         </div>
         <div class="form-group">
             <input type="submit" value="ADD" class="btn btn-primary">
+            <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Cancel</button>
         </div>
     </form>
 @endsection

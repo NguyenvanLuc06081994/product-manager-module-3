@@ -31,12 +31,14 @@
         <div class="form-group">
             <lablel>Store</lablel>
             <br>
-            @foreach($stores as $store)
-{{--                {{dd($product->store_products)}}--}}
+
+                @foreach($stores as $store)
                 <div class="form-group">
-                    <input type="checkbox" name="store[{{$store->id}}]" value="{{$store->id}}"> : {{$store->name}}
+                    <input type="checkbox" name="store[{{$store->id}}]"  @foreach($product->store_products as $store_product)  @if($store->id == $store_product->store_id) checked @endif @endforeach value="{{$store->id}}"> : {{$store->name}}
+
                 </div>
             @endforeach
+
         </div>
         <div class="form-group">
             <label>Product Image</label>
@@ -44,6 +46,7 @@
         </div>
         <div class="form-group">
             <input type="submit" value="Update" class="btn btn-primary">
+            <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Cancel</button>
         </div>
     </form>
 @endsection

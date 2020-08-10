@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Http\Services\CustomerService;
 use Illuminate\Http\Request;
 
@@ -25,10 +26,11 @@ class CustomerController extends Controller
         return view('customer.add');
     }
 
-    public function addCustomer(Request $request)
+    public function addCustomer(CustomerRequest $request)
     {
         $this->customerService->addCustomer($request);
-        return redirect()->route('customers.list');
+        $success = "Dữ liệu được xác thực thành công";
+        return redirect()->route('customers.list',compact('success'));
     }
 
     public function showFormEdit($id)

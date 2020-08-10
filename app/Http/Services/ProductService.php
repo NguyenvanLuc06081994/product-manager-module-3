@@ -2,8 +2,11 @@
 
 namespace App\Http\Services;
 
+use App\Category;
+use App\Customer;
 use App\Http\Repositories\ProductRepository;
 use App\Product;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductService
@@ -67,4 +70,5 @@ class ProductService
         $product = $this->productRepository->findById($id);
         $this->productRepository->delete($product);
     }
+
 }

@@ -32,6 +32,9 @@ Route::prefix('products')->group(function (){
     Route::get('/{id}/edit','ProductController@showFormEdit')->name('products.showFormEdit');
     Route::post('/{id}/edit','ProductController@edit')->name('products.edit');
     Route::get('/{id}/delete','ProductController@delete')->name('products.delete');
+    Route::get('/search','ProductController@search')->name('products.search');
+    Route::get('/find','ProductController@findByCategory')->name('products.findByCategory');
+//    Route::post('/filter','ProductController@filterByCategory')->name('products.filterByCategory');
 });
 
 Route::prefix('customers')->group(function (){

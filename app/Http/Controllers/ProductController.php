@@ -2,36 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Repositories\CategoryRepository;
+use App\Http\Services\CategoryService;
 use App\Http\Services\ProductService;
 use App\Http\Services\StoreService;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     protected $productService;
-    protected $categoryRepository;
+    protected $categoryService;
     protected $storeService;
 
     public function __construct(ProductService $productService,
-                                CategoryRepository $categoryRepository,
+                                CategoryService $categoryService,
                                 StoreService  $storeService)
     {
         $this->productService = $productService;
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryService = $categoryService;
         $this->storeService= $storeService;
     }
 
     public function getAll()
     {
         $products = $this->productService->getAll();
-        return view('product.list',compact('products'));
+        $categories = $this->categoryService->all();
+        return view('product.list',compact('products','categories'));
     }
 
     public function showFormAdd()
     {
         $stores = $this->storeService->getAll();
-        $categories = $this->categoryRepository->getAll();
+        $categories = $this->categoryService->all();
         return view('product.add',compact('categories','stores'));
     }
 
@@ -45,7 +49,7 @@ class ProductController extends Controller
     {
         $stores = $this->storeService->getAll();
         $product = $this->productService->findById($id);
-        $categories = $this->categoryRepository->getAll();
+        $categories = $this->categoryService->all();
         return view('product.edit',compact('product','categories','stores'));
     }
 
@@ -60,4 +64,32 @@ class ProductController extends Controller
         $this->productService->delete($id);
         return redirect()->route('products.list');
     }
+
+
+    public function search(Request $request)
+
+    {
+        $keyword = $request->input('keyword');
+        if (!$keyword) {
+            return redirect()->route('products.list');
+        }
+        $products = Product::where('name', 'LIKE', '%' . $keyword . '%')
+            ->paginate(5);
+
+        $categories = $this->categoryService->all();
+        return view('product.list', compact('products', 'categories'));
+    }
+
+
+    public function findByCategory(Request $request)
+    {
+        $idCategory = $request->category_id;
+//        $categoryFilter = Category::findOrFail($idCategory);
+        $products = Product::where('category_id',$idCategory)->paginate(5);
+        $categories = $this->categoryService->all();
+//        $totalProduct = count($products);
+        return view('product.list',compact('products','categories'));
+
+    }
+
 }

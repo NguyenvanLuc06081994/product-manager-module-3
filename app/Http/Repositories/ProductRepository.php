@@ -15,7 +15,7 @@ class ProductRepository
 
     public function getAll()
     {
-        return $this->product->all();
+        return $this->product->orderBy('id', 'DESC')->paginate(5);
     }
 
     public function save($product)

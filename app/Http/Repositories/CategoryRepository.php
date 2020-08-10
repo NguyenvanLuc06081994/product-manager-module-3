@@ -15,9 +15,14 @@ class CategoryRepository
         $this->category = $category;
     }
 
-    public function getAll()
+    public function all()
     {
         return $this->category->all();
+    }
+
+    public function getAll()
+    {
+        return $this->category->orderBy('id','DESC')->paginate(2);
     }
 
     public function save($category)

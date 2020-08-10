@@ -21,6 +21,11 @@ class CategoryService
         return $this->categoryRepository->getAll();
     }
 
+    public function all()
+    {
+        return $this->categoryRepository->all();
+    }
+
     public function addCategory($request)
     {
         $category = new Category();
