@@ -37,6 +37,8 @@ class ProductService
             $product->img = $path;
         }
         $this->productRepository->save($product);
+        $product->stores()->sync($request->store);
+
     }
 
     public function findById($id)
@@ -46,6 +48,7 @@ class ProductService
 
     public function edit($request, $id)
     {
+
         $product = $this->productRepository->findById($id);
         $product->name = $request->name;
         $product->price = $request->price;

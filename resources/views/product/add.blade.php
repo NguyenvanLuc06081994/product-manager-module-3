@@ -29,6 +29,16 @@
             </select>
         </div>
         <div class="form-group">
+            <lablel>Store</lablel>
+            <br>
+            @foreach($stores as $store)
+                <div class="form-group">
+                    <input type="checkbox" name="store[{{$store->id}}]" value="{{$store->id}}"> : {{$store->name}}
+                </div>
+            @endforeach
+
+        </div>
+        <div class="form-group">
             <label>Product Image</label>
             <input type="file" class="form-control" name="image" required>
         </div>
