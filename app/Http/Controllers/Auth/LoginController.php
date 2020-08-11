@@ -28,9 +28,13 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        return redirect()->route('products.list');
+        $this->middleware('guest')->except('logout');
     }
 }
