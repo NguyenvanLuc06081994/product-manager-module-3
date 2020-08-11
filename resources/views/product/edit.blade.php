@@ -31,14 +31,11 @@
         <div class="form-group">
             <lablel>Store</lablel>
             <br>
-
                 @foreach($stores as $store)
                 <div class="form-group">
                     <input type="checkbox" name="store[{{$store->id}}]"  @foreach($product->store_products as $store_product)  @if($store->id == $store_product->store_id) checked @endif @endforeach value="{{$store->id}}"> : {{$store->name}}
-
                 </div>
             @endforeach
-
         </div>
         <div class="form-group">
             <label>Product Image</label>

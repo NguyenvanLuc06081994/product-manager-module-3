@@ -26,14 +26,14 @@ class CustomerRequest extends FormRequest
         return [
             'name' => 'required|min:2|max:30',
             'phone'=>'required|numeric|max:99999999999',
-            'email'=>'required|max:255',
+            'email'=>'required|unique:customers,email|min:10|max:255',
             'address'=>'required|min:2|max:255'
         ];
     }
 
-    public function message()
+    public function messages()
     {
-        $messages = [
+        return [
             'name.required' => 'We need to know your full name!',
             'name.min' => 'Name size must be between 2 and 30!',
             'name.max' => 'Name size must be between 2 and 30!',
@@ -46,7 +46,5 @@ class CustomerRequest extends FormRequest
             'address.min' => 'Address size must be between 2 add 255',
             'address.max' => 'Address size must be between 2 add 255'
         ];
-
-        return $messages;
     }
 }

@@ -53,3 +53,8 @@ Route::prefix('bills')->group(function (){
 //    Route::get('/{id}/edit','CustomerController@showFormEdit')->name('customers.showFormEdit');
 //    Route::post('/{id}/edit','CustomerController@edit')->name('customers.edit');
 });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
